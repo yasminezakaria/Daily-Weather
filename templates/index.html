@@ -1,10 +1,80 @@
 {% extends "bootstrap/base.html" %}
 
 {% block content %}
-<h1>Daily Weather ^_^</h1>
-<div class="alert alert-success" role="alert">
-  <p>{{main}}</p>
+<div class="container">
+<h1>Welcome to Daily Weather</h1>
 </div>
+
+
+
+
+<div class="container" >
+  <div class="jumbotron" style="background-color: #87ceeb">
+   <h1>Stay updated with Daily Weather..</h1>
+    <br>
+   <div class="dropdown">
+   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {% if city == "" %}
+            Choose your city
+        {% else %}
+            {{ city }}
+        {% endif %}
+     <span class="caret"></span>
+   </button>
+   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+     {% for city in cities%}
+     <li><a href="/{{city}}">{{city}}</a></li>
+     {% endfor %}
+   </ul>
+   </div>
+</div>
+
+</div>
+
+
+<!-- After choosing city -->
+
+{% if city != '' %}
+
+  <div class = "container">
+
+    <h1>{{city}}'s Forecast for today:</h1>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="thumbnail">
+        <div class="caption">
+          <h2>Temperature:</h2>
+          <h3 align="center">Low: {{main.temp_min - 273.15 }} &#8451</h3>
+          <h3 align="center">High: {{main.temp_max - 273.15 }} &#8451</h3>
+        </div>
+      </div>
+    </div>
+
+
+     <div class="col-sm-12 col-md-6">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4>Want the current temperature? click the button below</h4>
+          {% if main2 != ' ' %}
+          <h3 align="center">it is currently {{main2.temp -272.15 }} &#8451</h3>
+          {% endif %}
+          <br>
+          <p><a href="/{{city}}/currentTemp" class="btn btn-primary" role="button">Current Temperature</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endif %}
+
+
+
+
+
 {% endblock %}
 
 {% block scripts %}
