@@ -1,7 +1,17 @@
-FROM python:3.6
+# this is an official Python runtime, used as the parent image
+FROM python:3.6.5-slim
 
-ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
-COPY . /code/
-RUN pip install -r requirements.txt
+# set the working directory in the container to /app
+WORKDIR /Daily-Weather
+
+# add the current directory to the container as /app
+ADD . /Daily-Weather
+
+# execute everyone's favorite pip command, pip install -r
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# unblock port 80 for the Flask app to run on
+EXPOSE 80
+
+# execute the Flask app
+CMD ["python", "Server.py"]
