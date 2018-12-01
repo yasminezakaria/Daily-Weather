@@ -45,8 +45,17 @@
       <div class="thumbnail">
         <div class="caption">
           <h2>Temperature:</h2>
-          <h3 align="center">Low: {{main.temp_min - 273.15 }} &#8451</h3>
-          <h3 align="center">High: {{main.temp_max - 273.15 }} &#8451</h3>
+          <h3 align="center">High: {{forecast.high}} &#8451</h3>
+          <h3 align="center">Low: {{forecast.low}} &#8451</h3>
+            <h3 align="center">Condition: {{forecast.text}}</h3>
+          <h3 align="center">date: {{forecast.date}}</h3>
+            <h3 align="center">day: {{forecast.day}}</h3>
+          <h3 align="center">wind direction: {{wind.direction}}</h3>
+            <h3 align="center">speed: {{wind.speed}} km/h</h3>
+          <h3 align="center">Humidity: {{atmosphere.humidity}} </h3>
+            <h3 align="center">pressure: {{atmosphere.pressure}} Pa</h3>
+            <h3 align="center">rising: {{atmosphere.rising}} </h3>
+            <h3 align="center">visibility: {{atmosphere.visibility}} </h3>
         </div>
       </div>
     </div>
@@ -56,8 +65,9 @@
       <div class="thumbnail">
         <div class="caption">
           <h4>Want the current temperature? click the button below</h4>
-          {% if main2 != ' ' %}
-          <h3 align="center">it is currently {{main2.temp -272.15 }} &#8451</h3>
+          {% if condition != ' ' %}
+          <h3 align="center">it is currently {{condition.temp}} &#8451</h3>
+            <h3 align="center"> and {{condition.text}}</h3>
           {% endif %}
           <br>
           <p><a href="/{{city}}/currentTemp" class="btn btn-primary" role="button">Current Temperature</a></p>

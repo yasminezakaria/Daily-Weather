@@ -44,3 +44,12 @@ def apiAtmosphere(city):
     # atmosphere.visibility
     return atmosphere
 
+
+def apiCondition(city):
+    weather = Weather(unit=Unit.CELSIUS)
+    location = weather.lookup_by_location(city)
+    condition = location.condition
+    # Info we can get:-
+    # condition.temp
+    # condition.text
+    return condition

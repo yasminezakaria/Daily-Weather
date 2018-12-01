@@ -17,22 +17,30 @@ cities = ["Cairo", "Bali", "Paris", "London", "Dubai", "New York", "Bangkok",
 
 @app.route('/')  # homepage
 def index():
-    global city
-    city = ''
-    main = ''
-    return render_template('index.html', main2=' ', main=main, cities=cities, city=city)
+    return render_template('index.html', city='', cities=cities)
 
 
 @app.route('/<string:c>')  # user choose city, but hasn't requested to view current temperature
 def cityEntered(c):
-    main = WeatherAPI.api(c)
-    return render_template('index.html', main2=' ', main=main, cities=cities, city=c)
+    ### to be changed
+    forecast = WeatherAPI.apiWeather(c)
+    wind = WeatherAPI.apiWind(c)
+    atmosphere = WeatherAPI.apiAtmosphere(c)
+    ###
+    return render_template('index.html', forecast=forecast, wind=wind, atmosphere=atmosphere,
+                           cities=cities, city=c, condition=' ')
 
 
 @app.route('/<string:c>/currentTemp')  # user chose to view current temperature for the selected city
 def currentTemp(c):
-    main = WeatherAPI.api(c)
-    return render_template('index.html', main=main, main2=main, cities=cities, city=c)
+    ### to be changed
+    forecast = WeatherAPI.apiWeather(c)
+    wind = WeatherAPI.apiWind(c)
+    atmosphere = WeatherAPI.apiAtmosphere(c)
+    ###
+    condition = WeatherAPI.apiCondition(c)
+    return render_template('index.html', forecast=forecast, wind=wind, atmosphere=atmosphere,
+                           cities=cities, city=c, condition=condition)
 
 
 if __name__ == '__main__':
