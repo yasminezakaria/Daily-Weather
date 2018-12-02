@@ -1,93 +1,170 @@
-{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>Compass Starter by Ariona, Rian</title>
 
-{% block content %}
-<div class="container">
-<h1>Welcome to Daily Weather</h1>
-</div>
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="/static/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
-
-
-<div class="container" >
-  <div class="jumbotron" style="background-color: #87ceeb">
-   <h1>Stay updated with Daily Weather..</h1>
-    <br>
-   <div class="dropdown">
-   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        {% if city == "" %}
-            Choose your city
-        {% else %}
-            {{ city }}
-        {% endif %}
-     <span class="caret"></span>
-   </button>
-   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-     {% for city in cities%}
-     <li><a href="/{{city}}">{{city}}</a></li>
-     {% endfor %}
-   </ul>
-   </div>
-</div>
-
-</div>
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/style.css">
 
 
-<!-- After choosing city -->
-
-{% if city != '' %}
-
-  <div class = "container">
-
-    <h1>{{city}}'s Forecast for today:</h1>
-
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <div class="thumbnail">
-        <div class="caption">
-          <h2>Temperature:</h2>
-          <h3 align="center">High: {{forecast.high}} &#8451</h3>
-          <h3 align="center">Low: {{forecast.low}} &#8451</h3>
-            <h3 align="center">Condition: {{forecast.text}}</h3>
-          <h3 align="center">date: {{forecast.date}}</h3>
-            <h3 align="center">day: {{forecast.day}}</h3>
-          <h3 align="center">wind direction: {{wind.direction}}</h3>
-            <h3 align="center">speed: {{wind.speed}} km/h</h3>
-          <h3 align="center">Humidity: {{atmosphere.humidity}} </h3>
-            <h3 align="center">pressure: {{atmosphere.pressure}} Pa</h3>
-            <h3 align="center">rising: {{atmosphere.rising}} </h3>
-            <h3 align="center">visibility: {{atmosphere.visibility}} </h3>
-        </div>
-      </div>
-    </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-     <div class="col-sm-12 col-md-6">
-      <div class="thumbnail">
-        <div class="caption">
-          <h4>Want the current temperature? click the button below</h4>
-          {% if condition != ' ' %}
-          <h3 align="center">it is currently {{condition.temp}} &#8451</h3>
-            <h3 align="center"> and {{condition.text}}</h3>
-          {% endif %}
-          <br>
-          <p><a href="/{{city}}/currentTemp" class="btn btn-primary" role="button">Current Temperature</a></p>
-        </div>
-      </div>
-    </div>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  </div>
+		<!--[if lt IE 9]>
+		<script src="/static/js/ie-support/html5.js"></script>
+		<script src="/static/js/ie-support/respond.js"></script>
+		<![endif]-->
 
-</div>
-
-{% endif %}
+	</head>
 
 
+	<body>
+		
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="index.html" class="branding">
+						<img src="/static/images/logo.png" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Daily Weather</h1>
+							<small class="site-description">Stay Updated</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
 
 
+			<div class="hero" data-bg-image="/static/images/banner.png">
+				<div class="container">
 
-{% endblock %}
+					<div class="dropdown" style="width:100%; align: center; background-color:#1E202B;">
+   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%; align: center;  background-color:#1E202B;">
+        		{% if city == "" %}
+				<br>
+				<div><h1 style="color: #009AD8">Choose your city <span class="caret"></span></h1></div>
+        		{% else %}
+            	<br>
+				<div><h1 style="color: #009AD8">{{city}} <span class="caret"></span></h1></div>
+        		{% endif %}
 
-{% block scripts %}
-{{ super() }}
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-{% endblock %}
+   			</button>
+   			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:100%; align: center; text-align:center; background-color:#262936">
+
+     		{% for city in cities%}
+    		 <li style="text-align=center; align:center; background-color:#262936"><a href="/{{city}}" style="color:#009AD8">{{city}}</a></li>
+     		{% endfor %}
+
+   			</ul>
+   			</div>
+
+				</div>
+			</div>
+
+
+			{% if city != '' %}
+
+
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">{{city}}'s forecast for today</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<span><img src="/static/images/icons/icon-3.svg" alt="" width=48></span>
+									<h1>{{forecast.text}}</h1>
+								</div>
+
+								<br>
+
+								<div class="degree">High:{{forecast.high}}<sup>o</sup>C</div>
+								<div class="degree">Low:{{forecast.low}}<sup>o</sup>C</div>
+
+								<br>
+
+								<span><img src="/static/images/icon-wind.png" alt="">{{wind.speed}} km/h   </span>
+								<span><img src="/static/images/icon-compass.png" alt="">{{wind.direction}}<sup>o</sup>  </span>
+								<span><img src="/static/images/icon-pressure.png" alt="">{{atmosphere.pressure}} Pa  </span>
+								<span><img src="/static/images/icon-humidity.png" alt="">{{atmosphere.humidity}} %  </span>
+								<span><img src="/static/images/icon-visibility.png" alt="">{{atmosphere.visibility}} %  </span>
+							</div>
+						</div>
+
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day">Current Conditions:</div>
+								<div class="date"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								{% if condition != ' ' %}
+								<div class="location">{{city}}</div>
+								<div class="degree">
+									<div class="num">{{condition.temp}}<sup>o</sup>C</div>
+									<br>
+									<div class="forecast-icon">
+										<h2>{{condition.text}}</h2>
+									</div>
+								</div>
+								{% else %}
+
+								<p><a href="/{{city}}/currentTemp" class="btn btn-primary" role="button">Current Temperature</a></p>
+
+								{% endif %}
+							</div>
+						</div>
+				</div>
+			</div>
+
+
+			{% endif %}
+
+
+			<main class="main-content">
+				<div class="fullwidth-block">
+					<div class="container">
+						<h2 align ="center">The ACML Team <3</h2>
+					</div>
+				</div>
+			</main> <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+
+
+					<p class="colophon">Theme Designed by Themezy. All rights reserved</p>
+					<p class="colophon">Some icons were designed by other designers as well</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+		<script src="/static/js/jquery-1.11.1.min.js"></script>
+		<script src="/static/js/plugins.js"></script>
+		<script src="/static/js/app.js"></script>
+		
+	</body>
+
+</html>
