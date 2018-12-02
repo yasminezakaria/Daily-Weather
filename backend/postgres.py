@@ -9,7 +9,7 @@ import psycopg2
 
 
 def connectToDB():
-    connectionString = "host=localhost dbname=postgres user=postgres"
+    connectionString = "host=localhost dbname=postgres user=postgres port=5432"
     print(connectionString)
     try:
         return psycopg2.connect(connectionString)

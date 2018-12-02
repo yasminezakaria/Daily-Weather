@@ -1,5 +1,5 @@
 import requests
-from weather import Weather, Unit
+# from weather import Weather, Unit
 
 
 def api(city):
