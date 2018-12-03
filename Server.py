@@ -39,9 +39,10 @@ def currentTemp(c):
 postgres.createTableForecast()
 postgres.createTableWind()
 postgres.createTableAtmosphere()
-# postgres.insertIntoTableForecast()
-# postgres.insertIntoTableWind()
-# postgres.insertIntoTableAtmosphere()
+postgres.insertIntoTableForecast()
+postgres.insertIntoTableWind()
+postgres.insertIntoTableAtmosphere()
+job1()
 
 def job1():
     for c in cities:
