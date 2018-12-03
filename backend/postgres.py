@@ -9,8 +9,7 @@ import settings
 
 
 def connectToDB():
-    connectionString = "host=" + settings.HOST + " dbname=" + settings.DATABASE + " user=" + settings.USER +\
-                       " password=" + settings.PASSWORD
+    connectionString = "host=" + settings.HOST + " dbname=" + settings.DATABASE + " user=" + settings.USER
     print(connectionString)
     try:
         return psycopg2.connect(connectionString)
