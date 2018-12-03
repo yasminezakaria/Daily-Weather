@@ -54,6 +54,38 @@ def createTableAtmosphere():
     except:
         print("Error executing create table")
 
+def insertIntoTableForecast():
+    conn = connectToDB()
+    cur = conn.cursor()
+    tup = ('Cairo', 'cold', '20', '10'), ('Bali', 'cold', '10', '0'), ('London', 'rain', '0', '-5'), ('Paris', 'clouds', '0', '-5'), ('Dubai', 'rain', '0', '-5'), ('New York', 'snow', '-10', '-5'), ('Bangkok', 'hot', '35', '40'), ('Kuala Lumpur', 'hot', '35', '40')
+    try:
+        cur.executemany("INSERT INTO forecast VALUES (%s, %s,%s, %s)", tup)
+        conn.commit()
+    except:
+        print("Error executing insert values")
+
+
+def insertIntoTableWind():
+    conn = connectToDB()
+    cur = conn.cursor()
+    tup = ('Cairo', '2', 'North'), ('Bali', '1', 'South'), ('London', '5', 'South'), ('Paris', '2', 'North'), ('Dubai', '1', 'South'), ('New York', '5', 'South'), ('Bangkok', '1', 'South'), ('Kuala Lumpur', '5', 'South')
+    try:
+        cur.executemany("INSERT INTO wind VALUES (%s, %s,%s)", tup)
+        conn.commit()
+    except:
+        print("Error executing insert values")
+
+
+def insertIntoTableAtmosphere():
+    conn = connectToDB()
+    cur = conn.cursor()
+    tup = ('Cairo', 'high', '5', '3'), ('Bali', 'low', '10', '0'), ('London', 'high', '0', '1'), ('Paris', 'low', '0', '1'), ('Dubai', 'high', '0', '5'), ('New York', 'low', '10', '5'), ('Bangkok', 'high', '5', '0'), ('Kuala Lumpur', 'high', '5', '0')
+    try:
+        cur.executemany("INSERT INTO atmosphere VALUES (%s, %s,%s, %s)", tup)
+        conn.commit()
+    except:
+        print("Error executing insert values")
+
 def updateTableForecast(c):
     conn = connectToDB()
     cur = conn.cursor()
