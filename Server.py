@@ -9,7 +9,7 @@ Bootstrap(app)
 
 city = ""  # Global variable that contains which city was chosen
 cities = ["Cairo", "Bali", "Paris", "London", "Dubai", "New York", "Bangkok",
-          "Kuala Lumpur", "Berlin", "Riyadh", "Madrid"]  # list of cities to choose from
+          "Kuala Lumpur"]  # list of cities to choose from
 
 
 @app.route('/')  # homepage
