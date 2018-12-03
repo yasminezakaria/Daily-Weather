@@ -55,7 +55,7 @@ def job1():
 
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=job1, trigger="interval", hour=24)
+    scheduler.add_job(func=job1, trigger="interval", hours=24)
     scheduler.start()
     app.run(host="0.0.0.0", debug=True)
 
