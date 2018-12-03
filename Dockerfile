@@ -11,4 +11,7 @@ ADD . /Daily-Weather
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # execute the Flask app
+
+EXPOSE 5000
+
 CMD ["python", "Server.py"]
