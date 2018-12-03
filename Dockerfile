@@ -8,7 +8,7 @@ WORKDIR /Daily-Weather
 ADD . /Daily-Weather
 
 # execute everyone's favorite pip command, pip install -r
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install --upgrade --trusted-host pypi.python.org -r requirements.txt
 
 # execute the Flask app
 
