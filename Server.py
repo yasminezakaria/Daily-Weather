@@ -35,6 +35,12 @@ def currentTemp(c):
     return render_template('index.html', forecast=forecast, wind=wind, atmosphere=atmosphere,
                            cities=cities, city=c, condition=condition)
 
+def job1():
+    for c in cities:
+        postgres.updateTableAtmosphere(c)
+        postgres.updateTableForecast(c)
+        postgres.updateTableWind(c)
+    print("DONE!")
 
 postgres.createTableForecast()
 postgres.createTableWind()
@@ -44,12 +50,7 @@ postgres.insertIntoTableWind()
 postgres.insertIntoTableAtmosphere()
 job1()
 
-def job1():
-    for c in cities:
-        postgres.updateTableAtmosphere(c)
-        postgres.updateTableForecast(c)
-        postgres.updateTableWind(c)
-    print("DONE!")
+
 
 
 
